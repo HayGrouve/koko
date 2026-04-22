@@ -123,7 +123,7 @@ export default function Home() {
                           />
                           <button
                             onClick={() => removeFile(index)}
-                            className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1.5 opacity-0 group-hover/item:opacity-100 transition-opacity hover:bg-black/70"
+                            className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1.5 opacity-100 md:opacity-0 md:group-hover/item:opacity-100 transition-opacity hover:bg-black/70"
                             aria-label="Премахни снимка"
                           >
                             <X className="w-4 h-4" />
