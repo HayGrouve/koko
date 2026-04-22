@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Big Day from Your POV | Десислава &amp; Иван</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#504530",
+              "tertiary": "#7d562d",
+              "surface-container-low": "#f5f3ef",
+              "on-error": "#ffffff",
+              "surface-variant": "#e4e2de",
+              "surface-container": "#efeeea",
+              "secondary-fixed": "#f2e0c3",
+              "primary-fixed": "#ffd9df",
+              "on-surface": "#1b1c1a",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#efdec0",
+              "on-primary-fixed-variant": "#633b44",
+              "on-primary-container": "#5c353e",
+              "primary": "#7e525c",
+              "on-error-container": "#93000a",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#f0b8c3",
+              "on-primary-fixed": "#31111a",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#f0bd8b",
+              "primary-fixed-dim": "#f0b8c3",
+              "inverse-surface": "#30312e",
+              "on-tertiary-container": "#5b3912",
+              "outline-variant": "#d4c4b7",
+              "on-background": "#1b1c1a",
+              "secondary": "#695d46",
+              "on-secondary-fixed": "#231a08",
+              "on-tertiary-fixed-variant": "#623f18",
+              "on-secondary-container": "#6d614a",
+              "tertiary-container": "#d4a373",
+              "on-tertiary-fixed": "#2c1600",
+              "surface": "#fbf9f5",
+              "outline": "#82756a",
+              "tertiary-fixed": "#ffdcbd",
+              "primary-container": "#d49fa9",
+              "error-container": "#ffdad6",
+              "surface-tint": "#7e525c",
+              "inverse-on-surface": "#f2f0ed",
+              "on-surface-variant": "#50453b",
+              "secondary-fixed-dim": "#d5c5a8",
+              "surface-container-highest": "#e4e2de",
+              "surface-container-high": "#eae8e4",
+              "background": "#fbf9f5",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#dbdad6",
+              "surface-bright": "#fbf9f5"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f5]/70 backdrop-blur-md shadow-[0_8px_32px_rgba(27,28,26,0.04)]">
+<div class="flex justify-center md:justify-start items-center px-8 py-6 max-w-7xl mx-auto">
+<h1 class="font-headline italic text-2xl text-[#7e525c]">Десислава &amp; Иван</h1>
+</div>
+</header>
+<main class="pt-32 pb-24 px-6 max-w-5xl mx-auto">
+<!-- Hero Section -->
+<section class="text-center mb-20">
+<span class="font-label text-sm uppercase tracking-widest text-secondary mb-4 block">ЗАПЕЧАТАНИ МОМЕНТИ</span>
+<h2 class="font-headline text-5xl md:text-6xl text-on-surface mb-8 leading-tight">Нашият голям ден през вашите очи</h2>
+<div class="max-w-2xl mx-auto">
+<p class="text-lg text-on-surface-variant leading-relaxed font-light">Ще се радваме да видим магията през вашите очи. Моля, споделете до 5 от любимите си моменти от нашата сватбена нощ.</p>
+</div>
+</section>
+<!-- Upload Canvas -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Form Side -->
+<div class="lg:col-span-5 space-y-8 order-2 lg:order-1">
+<div class="space-y-6">
+<div class="group">
+<label class="font-label text-xs uppercase tracking-widest text-secondary block mb-2" for="guest_name">ВАШЕТО ИМЕ</label>
+<input class="w-full bg-surface-container-highest border-b border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 py-3 px-4 placeholder:text-outline italic text-on-surface border-x-0 border-t-0 rounded-none" id="guest_name" placeholder="Как да ви запишем?" type="text"/>
+</div>
+<div class="group">
+<label class="font-label text-xs uppercase tracking-widest text-secondary block mb-2" for="caption">КРАТКО ОПИСАНИЕ</label>
+<textarea class="w-full bg-surface-container-highest border-b border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 py-3 px-4 placeholder:text-outline italic text-on-surface border-x-0 border-t-0 rounded-none resize-none" id="caption" placeholder="Разкажете ни за тези моменти..." rows="4"></textarea>
+</div>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex justify-between items-center">
+<span class="text-xs font-label text-secondary uppercase tracking-widest">Статус на качване</span>
+<span class="text-xs font-label text-primary font-bold">100%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full w-full transition-all duration-1000"></div>
+</div>
+</div><button class="w-full bg-primary text-on-primary py-5 rounded-md font-label uppercase tracking-widest text-sm hover:opacity-90 transition-opacity duration-300 shadow-sm"><div class="flex items-center justify-center gap-2"><span>ИЗПРАТЕНО!</span><span class="material-symbols-outlined text-lg">check_circle</span></div></button>
+<p class="text-center text-xs text-outline font-light">С качването се съгласявате да ги споделим в нашия сватбен архив.</p>
+</div>
+<!-- Upload Zone Side -->
+<div class="lg:col-span-7 order-1 lg:order-2">
+<div class="relative group">
+<!-- Decorative background layer -->
+<div class="absolute -inset-4 bg-surface-container-low rounded-xl -z-10 transition-transform duration-500 group-hover:scale-[1.02]"></div>
+<!-- Main drop zone -->
+<div class="border-2 border-dashed border-outline-variant/30 bg-surface-container-lowest rounded-lg p-12 text-center transition-all duration-500 hover:border-primary/40 group/zone h-[450px] flex flex-col items-center justify-center">
+<div class="mb-6 relative">
+<div class="w-20 h-20 bg-primary-fixed-dim rounded-full flex items-center justify-center text-primary mb-4 mx-auto group-hover/zone:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-4xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<span class="absolute -top-1 -right-1 flex h-6 w-6">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-6 w-6 bg-primary text-[10px] text-on-primary items-center justify-center font-bold">5</span>
+</span>
+</div>
+<h3 class="font-headline text-2xl text-on-surface mb-2">Плъзнете и пуснете спомени</h3>
+<p class="text-on-surface-variant font-light mb-8 italic">Макс. 5 снимки • За предпочитане с висока резолюция</p>
+<label class="cursor-pointer bg-surface-container-high text-secondary px-8 py-3 rounded-md font-label text-sm uppercase tracking-widest hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300">ИЗБЕРЕТЕ ОТ УСТРОЙСТВО <input accept="image/*" class="hidden" multiple="" type="file"/></label>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#7d562d]/10 bg-[#fbf9f5] mt-32">
+<div class="flex flex-col items-center gap-6 py-12 px-4 text-center max-w-7xl mx-auto">
+<h2 class="font-noto-serif text-xl text-[#695d46]">Десислава &amp; Иван</h2>
+<div class="flex gap-8">
+<a class="font-manrope text-sm uppercase tracking-widest text-stone-500 hover:text-[#7e525c] hover:tracking-[0.2em] transition-all duration-500" href="#">ПОЛИТИКА ЗА ПОВЕРИТЕЛНОСТ</a>
+<a class="font-manrope text-sm uppercase tracking-widest text-stone-500 hover:text-[#7e525c] hover:tracking-[0.2em] transition-all duration-500" href="#">СВЪРЖЕТЕ СЕ С НАС</a>
+<a class="font-manrope text-sm uppercase tracking-widest text-stone-500 hover:text-[#7e525c] hover:tracking-[0.2em] transition-all duration-500" href="#">АРХИВ НА ГАЛЕРИЯТА</a>
+</div>
+<p class="font-manrope text-sm uppercase tracking-widest text-[#7e525c]">С ЛЮБОВ, ДЕСИСЛАВА &amp; ИВАН © 2024</p>
+</div>
+</footer>
+</body></html>
