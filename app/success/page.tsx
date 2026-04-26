@@ -51,7 +51,7 @@ export default function SuccessPage() {
           </Link>
         </nav>
         <div className="font-body text-xs uppercase tracking-[0.2em] text-[#695d46]/60 text-center">
-          © 2024 Десислава & Иван. С любов.
+          Десислава & Иван. С любов.
         </div>
       </footer>
     </>
