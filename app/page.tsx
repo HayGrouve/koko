@@ -6,6 +6,7 @@ import { useUploadThing } from "@/utils/uploadthing";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { Display, Narrative, Label } from "@/components/ui/typography";
+import { MAX_IMAGE_BYTES, MAX_IMAGE_COUNT } from "@/lib/upload-limits";
 import { AlertCircle, UploadCloud, X, Plus, Loader2 } from "lucide-react";
 
 export default function Home() {
@@ -38,15 +39,28 @@ export default function Home() {
     if (!e.target.files) return;
 
     const selectedFiles = Array.from(e.target.files);
-    if (files.length + selectedFiles.length > 5) {
+    if (files.length + selectedFiles.length > MAX_IMAGE_COUNT) {
       setError("Моля, изберете до 5 снимки общо.");
-      // Clear the input so the same files can be selected again if needed
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
 
-    const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
-    setFiles((prev) => [...prev, ...selectedFiles]);
+    const oversized = selectedFiles.filter((file) => file.size > MAX_IMAGE_BYTES);
+    const accepted = selectedFiles.filter((file) => file.size <= MAX_IMAGE_BYTES);
+    if (oversized.length > 0) {
+      setError(
+        oversized.length === 1
+          ? "Една снимка е над 64 MB и не беше добавена. Обикновените снимки от телефона минават; RAW файловете — не."
+          : "Някои снимки са над 64 MB и не бяха добавени. Обикновените снимки от телефона минават; RAW файловете — не.",
+      );
+      if (accepted.length === 0) {
+        if (fileInputRef.current) fileInputRef.current.value = "";
+        return;
+      }
+    }
+
+    const newPreviews = accepted.map((file) => URL.createObjectURL(file));
+    setFiles((prev) => [...prev, ...accepted]);
     setPreviews((prev) => {
       const updated = [...prev, ...newPreviews];
       previewsRef.current = updated;
@@ -130,7 +144,7 @@ export default function Home() {
                           </button>
                         </div>
                       ))}
-                      {files.length < 5 && (
+                      {files.length < MAX_IMAGE_COUNT && (
                         <div
                           onClick={() => fileInputRef.current?.click()}
                           className="aspect-square rounded-xl border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center cursor-pointer hover:border-primary/40 text-secondary hover:text-primary transition-colors bg-surface-container-high/30"
