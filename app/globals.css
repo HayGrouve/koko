@@ -51,6 +51,8 @@
   --color-surface-bright: #fbf9f5;
 
   --font-headline: var(--font-noto-serif);
+  --font-display: var(--font-yeseva);
+  --font-hand: var(--font-marck);
   --font-body: var(--font-manrope);
   --font-label: var(--font-manrope);
 

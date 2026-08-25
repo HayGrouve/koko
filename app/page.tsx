@@ -93,7 +93,9 @@ export default function Home() {
       <Header />
       <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto flex-grow flex flex-col w-full">
         <section className="text-center mb-20">
-          <Display className="mb-8">Нашият голям ден през вашите очи</Display>
+          <Display className="mb-8 font-display text-4xl md:text-6xl">
+            Нашият голям ден през вашите очи
+          </Display>
           <div className="max-w-2xl mx-auto">
             <Narrative>
               Фотографът ще снима церемонията. Вие снимайте масата, наздравицата, хората и танците.
