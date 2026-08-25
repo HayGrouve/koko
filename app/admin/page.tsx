@@ -10,7 +10,7 @@ export default async function AdminPage() {
   return (
     <>
       <Header />
-      <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto flex-grow flex flex-col w-full">
+      <main className="pt-8 pb-24 px-6 max-w-5xl mx-auto flex-grow flex flex-col w-full">
         {session ? (
           <AdminGalleryView />
         ) : (

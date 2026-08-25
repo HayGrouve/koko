@@ -5,7 +5,7 @@ export default function SuccessPage() {
   return (
     <>
       <Header />
-      <main className="flex-grow flex flex-col items-center justify-center p-6 sm:p-12 lg:p-24 relative overflow-hidden min-h-screen">
+      <main className="flex-grow flex flex-col items-center justify-center p-6 sm:p-12 lg:p-24 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-center opacity-30">
           <img
             alt="background texture"

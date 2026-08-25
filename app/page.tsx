@@ -91,7 +91,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto flex-grow flex flex-col w-full">
+      <main className="pt-8 pb-24 px-6 max-w-5xl mx-auto flex-grow flex flex-col w-full">
         <section className="text-center mb-20">
           <Display className="mb-8 text-4xl md:text-6xl">
             Нашият голям ден през вашите очи
