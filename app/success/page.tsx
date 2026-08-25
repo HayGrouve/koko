@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Heart, Camera } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Header } from "@/components/ui/header";
 
 export default function SuccessPage() {
@@ -32,28 +31,11 @@ export default function SuccessPage() {
             </p>
             <div className="w-16 h-[1px] bg-outline-variant/30 mx-auto my-8"></div>
             <p className="text-base sm:text-lg text-on-surface-variant max-w-md mx-auto leading-relaxed">
-              Десислава и Иван ще се зарадват да ги видят.
+              Сем. Кирови ще се зарадват да ги видят.
             </p>
           </div>
         </div>
       </main>
-
-      <footer className="bg-[#fbf9f5] w-full py-16 border-t border-[#7e525c]/10 flex flex-col items-center gap-8 max-w-7xl mx-auto px-6">
-        <nav className="flex flex-wrap justify-center gap-8">
-          <Link href="/" className="font-body text-xs uppercase tracking-[0.2em] text-[#695d46]/60 hover:text-[#7e525c] transition-colors duration-300 ease-in-out">
-            Начало
-          </Link>
-          <Link href="#" className="font-body text-xs uppercase tracking-[0.2em] text-[#695d46]/60 hover:text-[#7e525c] transition-colors duration-300 ease-in-out">
-            Галерия
-          </Link>
-          <Link href="#" className="font-body text-xs uppercase tracking-[0.2em] text-[#695d46]/60 hover:text-[#7e525c] transition-colors duration-300 ease-in-out">
-            Контакти
-          </Link>
-        </nav>
-        <div className="font-body text-xs uppercase tracking-[0.2em] text-[#695d46]/60 text-center">
-          Десислава & Иван. С любов.
-        </div>
-      </footer>
     </>
   );
 }

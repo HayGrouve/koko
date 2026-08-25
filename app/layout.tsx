@@ -18,7 +18,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Десислава & Иван | Сватбена галерия",
+  title: "Иван & Десислава | Сватбена галерия",
   description: "Нашият голям ден през вашите очи",
 };
 

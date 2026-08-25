@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { useUploadThing } from "@/utils/uploadthing";
 import { Header } from "@/components/ui/header";
-import { Footer } from "@/components/ui/footer";
-import { Display, Narrative, Label } from "@/components/ui/typography";
+import { Display, Narrative } from "@/components/ui/typography";
 import { MAX_IMAGE_BYTES, MAX_IMAGE_COUNT } from "@/lib/upload-limits";
 import { AlertCircle, UploadCloud, X, Plus, Loader2 } from "lucide-react";
 
@@ -91,11 +90,10 @@ export default function Home() {
       <Header />
       <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto flex-grow flex flex-col w-full">
         <section className="text-center mb-20">
-          <Label className="mb-4 block">ЗАПЕЧАТАНИ МОМЕНТИ</Label>
           <Display className="mb-8">Нашият голям ден през вашите очи</Display>
           <div className="max-w-2xl mx-auto">
             <Narrative>
-              Ще се радваме да видим магията през вашите очи. Моля, споделете до 5 от любимите си моменти от нашата сватбена нощ.
+              Ще се радваме да видим магията през вашите очи. Моля, споделете до 5 от любимите си моменти от нашия сватбен ден.
             </Narrative>
           </div>
         </section>
@@ -114,13 +112,13 @@ export default function Home() {
                     <UploadCloud className="w-10 h-10" />
                   </div>
                   <h3 className="font-headline text-2xl md:text-3xl text-on-surface mb-4 hover:text-primary transition-colors">
-                    Плъзнете и пуснете спомени
+                    Качете спомени
                   </h3>
                   <p className="text-on-surface-variant font-light mb-10 italic">
-                    Макс. 5 снимки • За предпочитане с висока резолюция
+                    Макс. 5 снимки • За предпочитане с високо кчество
                   </p>
                   <div className="!bg-primary !text-on-primary px-10 py-4 rounded-full font-label text-sm uppercase tracking-widest shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-300">
-                    ИЗБЕРЕТЕ ОТ УСТРОЙСТВО
+                    Изберете снимки
                   </div>
                 </div>
               ) : (
@@ -195,7 +193,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }
