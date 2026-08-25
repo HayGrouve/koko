@@ -5,7 +5,11 @@ import { useState, useRef, useEffect } from "react";
 import { useUploadThing } from "@/utils/uploadthing";
 import { Header } from "@/components/ui/header";
 import { Display, Narrative } from "@/components/ui/typography";
-import { MAX_IMAGE_BYTES, MAX_IMAGE_COUNT } from "@/lib/upload-limits";
+import {
+  MAX_IMAGE_BYTES,
+  MAX_IMAGE_COUNT,
+  MAX_IMAGE_SIZE_LABEL,
+} from "@/lib/upload-limits";
 import { AlertCircle, UploadCloud, X, Plus, Loader2 } from "lucide-react";
 
 export default function Home() {
@@ -17,8 +21,7 @@ export default function Home() {
   const previewsRef = useRef<string[]>([]);
 
   const { startUpload, isUploading } = useUploadThing("imageUploader", {
-    onClientUploadComplete: (res) => {
-      console.log("Files: ", res);
+    onClientUploadComplete: () => {
       router.push("/success");
     },
     onUploadError: (error: Error) => {
@@ -39,7 +42,7 @@ export default function Home() {
 
     const selectedFiles = Array.from(e.target.files);
     if (files.length + selectedFiles.length > MAX_IMAGE_COUNT) {
-      setError("Моля, изберете до 5 снимки общо.");
+      setError(`Моля, изберете до ${MAX_IMAGE_COUNT} снимки общо.`);
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
@@ -49,8 +52,8 @@ export default function Home() {
     if (oversized.length > 0) {
       setError(
         oversized.length === 1
-          ? "Една снимка е над 64 MB и не беше добавена. Обикновените снимки от телефона минават; RAW файловете — не."
-          : "Някои снимки са над 64 MB и не бяха добавени. Обикновените снимки от телефона минават; RAW файловете — не.",
+          ? `Една снимка е над ${MAX_IMAGE_SIZE_LABEL} и не беше добавена.`
+          : `Някои снимки са над ${MAX_IMAGE_SIZE_LABEL} и не бяха добавени.`,
       );
       if (accepted.length === 0) {
         if (fileInputRef.current) fileInputRef.current.value = "";
@@ -93,7 +96,7 @@ export default function Home() {
           <Display className="mb-8">Нашият голям ден през вашите очи</Display>
           <div className="max-w-2xl mx-auto">
             <Narrative>
-              Ще се радваме да видим магията през вашите очи. Моля, споделете до 5 от любимите си моменти от нашия сватбен ден.
+              Ще се радваме да видим магията през вашите очи. Моля, споделете любимите си моменти от нашия сватбен ден.
             </Narrative>
           </div>
         </section>
@@ -115,7 +118,7 @@ export default function Home() {
                     Качете спомени
                   </h3>
                   <p className="text-on-surface-variant font-light mb-10 italic">
-                    Макс. 5 снимки • За предпочитане с високо кчество
+                    До {MAX_IMAGE_COUNT} снимки наведнъж • За предпочитане с високо качество
                   </p>
                   <div className="!bg-primary !text-on-primary px-10 py-4 rounded-full font-label text-sm uppercase tracking-widest shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-300">
                     Изберете снимки
