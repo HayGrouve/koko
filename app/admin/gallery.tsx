@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { X } from "lucide-react";
+import { useEffect, useState, useTransition } from "react";
+import { Trash2, X } from "lucide-react";
 import {
   closeGallery,
   loadMorePhotos,
@@ -26,6 +26,25 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
   const [pendingRemoval, setPendingRemoval] = useState<GalleryPhoto | null>(
     null,
   );
+  const [viewingPhoto, setViewingPhoto] = useState<GalleryPhoto | null>(null);
+
+  useEffect(() => {
+    if (!viewingPhoto) {
+      return;
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setViewingPhoto(null);
+      }
+    }
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [viewingPhoto]);
 
   const showEmpty = photos.length === 0 && !hasMore;
 
@@ -82,31 +101,41 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
           {photos.map((photo) => (
             <article
               key={photo.key}
-              className="relative aspect-square rounded-xl overflow-hidden border border-outline-variant/30 bg-surface-container-low group/item"
+              className="relative aspect-square rounded-xl overflow-hidden border border-outline-variant/30 bg-surface-container-low"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photo.url}
-                alt={photo.name}
+                alt=""
                 className="object-cover w-full h-full"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-black/55 text-white p-3 space-y-0.5">
-                <p className="text-xs truncate">{photo.name}</p>
-                <p className="text-[11px] opacity-90">
-                  {photo.uploadedAtLabel} · {photo.sizeLabel}
-                </p>
-              </div>
               <button
                 type="button"
-                onClick={() => {
-                  setRemoveError(null);
-                  setPendingRemoval(photo);
-                }}
-                className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1.5 opacity-100 md:opacity-0 md:group-hover/item:opacity-100 transition-opacity hover:bg-black/70"
-                aria-label={copy.removeAria}
-              >
-                <X className="w-4 h-4" />
-              </button>
+                onClick={() => setViewingPhoto(photo)}
+                className="absolute inset-0 cursor-zoom-in"
+                aria-label={`${copy.viewFullAria}: ${photo.name}`}
+              />
+              <div className="absolute inset-x-0 top-0 z-10 flex items-center gap-2 bg-black/55 text-white pl-3.5 pr-2 py-2 pointer-events-none">
+                <p className="min-w-0 flex-1 text-sm leading-snug truncate">
+                  {photo.name}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRemoveError(null);
+                    setPendingRemoval(photo);
+                  }}
+                  className="pointer-events-auto shrink-0 bg-error text-on-error rounded-full p-1.5 hover:bg-error/90"
+                  aria-label={copy.removeAria}
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 z-10 grid grid-cols-3 items-center gap-1 bg-black/55 text-white px-3.5 py-2.5 text-xs leading-relaxed pointer-events-none">
+                <p className="truncate">{photo.uploadedDateLabel}</p>
+                <p className="text-center truncate">{photo.uploadedTimeLabel}</p>
+                <p className="text-right truncate">{photo.sizeLabel}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -129,6 +158,31 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
         <p className="text-center text-sm text-error" role="alert">
           {removeError}
         </p>
+      ) : null}
+
+      {viewingPhoto ? (
+        <div
+          className="fixed inset-0 z-[80] bg-black"
+          role="dialog"
+          aria-modal="true"
+          aria-label={viewingPhoto.name}
+        >
+          <button
+            type="button"
+            onClick={() => setViewingPhoto(null)}
+            className="absolute top-4 right-4 z-10 text-white/90 hover:text-white p-2"
+            aria-label={copy.closeFullAria}
+          >
+            <X className="w-7 h-7" />
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={viewingPhoto.url}
+            alt={viewingPhoto.name}
+            className="w-full h-full object-contain cursor-zoom-out"
+            onClick={() => setViewingPhoto(null)}
+          />
+        </div>
       ) : null}
 
       {pendingRemoval ? (

@@ -5,7 +5,8 @@ import {
   LIST_PAGE_SIZE,
   appIdFromUploadthingToken,
   formatByteSize,
-  formatUploadedAt,
+  formatUploadedDate,
+  formatUploadedTime,
   photoCdnUrl,
   uploadedPhotos,
 } from "@/lib/uploaded-photos";
@@ -14,7 +15,8 @@ export type GalleryPhoto = {
   key: string;
   name: string;
   sizeLabel: string;
-  uploadedAtLabel: string;
+  uploadedDateLabel: string;
+  uploadedTimeLabel: string;
   url: string;
 };
 
@@ -33,7 +35,8 @@ export async function fetchGalleryPage(offset: number): Promise<{
     key: listed.key,
     name: listed.name,
     sizeLabel: formatByteSize(listed.size),
-    uploadedAtLabel: formatUploadedAt(listed.uploadedAt),
+    uploadedDateLabel: formatUploadedDate(listed.uploadedAt),
+    uploadedTimeLabel: formatUploadedTime(listed.uploadedAt),
     url: photoCdnUrl(appId, listed.key),
   }));
 

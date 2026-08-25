@@ -40,9 +40,14 @@ export function formatByteSize(bytes: number): string {
   })} МБ`;
 }
 
-export function formatUploadedAt(uploadedAtMs: number): string {
-  return new Date(uploadedAtMs).toLocaleString("bg-BG", {
+export function formatUploadedDate(uploadedAtMs: number): string {
+  return new Date(uploadedAtMs).toLocaleDateString("bg-BG", {
     dateStyle: "short",
+  });
+}
+
+export function formatUploadedTime(uploadedAtMs: number): string {
+  return new Date(uploadedAtMs).toLocaleTimeString("bg-BG", {
     timeStyle: "short",
   });
 }

@@ -10,6 +10,8 @@ export const copy = {
   empty: "Все още няма качени снимки.",
   loadMore: "Още снимки",
   removeAria: "Премахни снимката",
+  viewFullAria: "Виж на цял екран",
+  closeFullAria: "Затвори снимката",
   confirmBody: "Да премахнем ли тази снимка? Няма връщане назад.",
   confirm: "Премахни",
   cancel: "Остави я",
