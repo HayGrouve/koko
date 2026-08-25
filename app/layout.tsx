@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Serif, Manrope, Yeseva_One, Marck_Script } from "next/font/google";
+import { Noto_Serif, Manrope, Marck_Script } from "next/font/google";
 import "./globals.css";
 
 const notoSerif = Noto_Serif({
@@ -7,13 +7,6 @@ const notoSerif = Noto_Serif({
   subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  display: "swap",
-});
-
-const yeseva = Yeseva_One({
-  variable: "--font-yeseva",
-  subsets: ["latin", "cyrillic"],
-  weight: "400",
   display: "swap",
 });
 
@@ -44,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="bg"
-      className={`${notoSerif.variable} ${manrope.variable} ${yeseva.variable} ${marck.variable} h-full antialiased`}
+      className={`${notoSerif.variable} ${manrope.variable} ${marck.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
