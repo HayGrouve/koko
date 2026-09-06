@@ -52,7 +52,7 @@ export function zipStoredEntries(
           size += value.byteLength;
           write(value);
         }
-        crc ^= 0xffffffff;
+        crc = (crc ^ 0xffffffff) >>> 0;
         write(dataDescriptor(crc, size));
         central.push({
           nameBytes,

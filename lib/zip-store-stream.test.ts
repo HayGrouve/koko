@@ -18,6 +18,27 @@ test("stored zip contains each entry name and bytes", async () => {
   assert.ok(text.includes("bye"));
 });
 
+test("stored zip finishes when crc has the high bit set", async () => {
+  const payload = new Uint8Array(100).fill(1);
+  const stream = zipStoredEntries([
+    {
+      name: "ones.bin",
+      body: () =>
+        new ReadableStream({
+          start(controller) {
+            controller.enqueue(payload);
+            controller.close();
+          },
+        }),
+    },
+  ]);
+
+  const bytes = await readAll(stream);
+  assert.ok(bytes.byteLength > payload.byteLength);
+  assert.equal(bytes[0], 0x50);
+  assert.equal(bytes[1], 0x4b);
+});
+
 function readableFrom(text: string): ReadableStream<Uint8Array> {
   return new ReadableStream({
     start(controller) {
