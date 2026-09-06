@@ -16,4 +16,6 @@ export const copy = {
   confirm: "Премахни",
   cancel: "Остави я",
   removeError: "Не успяхме да премахнем снимката.",
+  archiveDownload: "Изтегли всички",
+  archiveError: "Не успяхме да съберем снимките.",
 } as const;

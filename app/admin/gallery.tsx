@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useTransition, type MouseEvent } from "react";
 import { Trash2, X } from "lucide-react";
 import {
   closeGallery,
@@ -23,6 +23,8 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
   const [nextOffset, setNextOffset] = useState(LIST_PAGE_SIZE);
   const [pending, startTransition] = useTransition();
   const [removeError, setRemoveError] = useState<string | null>(null);
+  const [archiveError, setArchiveError] = useState<string | null>(null);
+  const [packing, setPacking] = useState(false);
   const [pendingRemoval, setPendingRemoval] = useState<GalleryPhoto | null>(
     null,
   );
@@ -47,6 +49,40 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
   }, [viewingPhoto]);
 
   const showEmpty = photos.length === 0 && !hasMore;
+
+  function handleArchiveClick(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    if (packing) {
+      return;
+    }
+    setPacking(true);
+    setArchiveError(null);
+    const iframe = document.createElement("iframe");
+    iframe.hidden = true;
+    iframe.title = copy.archiveDownload;
+    iframe.src = "/admin/archive";
+    function finish(failed: boolean) {
+      if (failed) {
+        setArchiveError(copy.archiveError);
+      }
+      setPacking(false);
+      iframe.remove();
+    }
+    iframe.onload = () => {
+      let failed = false;
+      try {
+        const text = iframe.contentDocument?.body?.innerText?.trim() ?? "";
+        failed = text.length > 0;
+      } catch {
+        failed = false;
+      }
+      finish(failed);
+    };
+    iframe.onerror = () => {
+      finish(true);
+    };
+    document.body.appendChild(iframe);
+  }
 
   function handleLoadMore() {
     startTransition(async () => {
@@ -97,6 +133,19 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
           {copy.empty}
         </p>
       ) : (
+        <>
+        <div className="flex justify-center">
+          <a
+            href="/admin/archive"
+            onClick={handleArchiveClick}
+            aria-disabled={packing}
+            className={`!bg-primary !text-on-primary px-10 py-4 rounded-full font-label text-sm uppercase tracking-widest shadow-lg shadow-primary/20 ${
+              packing ? "pointer-events-none opacity-70" : ""
+            }`}
+          >
+            {copy.archiveDownload}
+          </a>
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {photos.map((photo) => (
             <article
@@ -139,6 +188,7 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
             </article>
           ))}
         </div>
+        </>
       )}
 
       {hasMore ? (
@@ -152,6 +202,12 @@ export function AdminGallery({ initialPhotos, initialHasMore }: Props) {
             {copy.loadMore}
           </button>
         </div>
+      ) : null}
+
+      {archiveError ? (
+        <p className="text-center text-sm text-error" role="alert">
+          {archiveError}
+        </p>
       ) : null}
 
       {removeError ? (

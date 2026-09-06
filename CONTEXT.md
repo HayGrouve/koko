@@ -23,3 +23,7 @@ _Avoid_: Unpublish, archive, hide
 **Confirmation**:
 The extra in-app step that must succeed before a removal runs.
 _Avoid_: Browser alert, prompt, `window.confirm`
+
+**Archive**:
+The zip of uploaded photos the couple take from the admin gallery.
+_Avoid_: Export, dump, backup, bundle, download-all

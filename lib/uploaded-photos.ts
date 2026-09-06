@@ -51,3 +51,32 @@ export function formatUploadedTime(uploadedAtMs: number): string {
     timeStyle: "short",
   });
 }
+
+export const ARCHIVE_LIST_PAGE_SIZE = 500;
+
+export type ArchiveListPage = {
+  files: readonly ListedPhoto[];
+  hasMore: boolean;
+};
+
+export async function collectUploadedPhotosForArchive(
+  listPage: (args: {
+    limit: number;
+    offset: number;
+  }) => Promise<ArchiveListPage>,
+): Promise<ListedPhoto[]> {
+  const collected: ListedPhoto[] = [];
+  let offset = 0;
+
+  for (;;) {
+    const page = await listPage({
+      limit: ARCHIVE_LIST_PAGE_SIZE,
+      offset,
+    });
+    collected.push(...uploadedPhotos(page.files));
+    if (!page.hasMore) {
+      return collected;
+    }
+    offset += ARCHIVE_LIST_PAGE_SIZE;
+  }
+}
